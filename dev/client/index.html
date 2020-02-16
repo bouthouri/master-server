@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List ettir</title>
+    <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy&display=swap" rel="stylesheet">
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+        }
+
+        html {
+            font-family: 'Luckiest Guy', sans-serif;
+            text-transform: uppercase;
+            background: linear-gradient(-225deg, #FF057C 0%, #8D0B93 50%, #321575 100%);
+            background-attachment: fixed;
+        }
+
+        section {
+            width: 800px;
+            margin: auto;
+            margin-top: 100px;
+        }
+
+        h1 {
+            color: white;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 5px;
+            display: flex;
+            flex-direction: row;
+        }
+
+        li span {
+            padding: 25px;
+            text-align: center;
+        }
+
+        .rank {
+            background: rgb(37, 28, 87);
+            color: white;
+            position: relative;
+            z-index: 1;
+            padding-right: 10px;
+            padding-right: 40px;
+            padding-left: 40px;
+            flex: 0 0 60px;
+        }
+
+        .rank::before {
+            z-index: -1;
+            content: ' ';
+            display: block;
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            background: rgb(37, 28, 87);
+            transform-origin: bottom left;
+            -ms-transform: skew(-25deg, 0deg);
+            -webkit-transform: skew(-25deg, 0deg);
+            transform: skew(-25deg, 0deg);
+        }
+
+
+        .name {
+            width: 500px;
+            padding-left: 40px;
+            text-align: center;
+            flex: 1 1 auto;
+        }
+
+        .name,
+        .score {
+            background: white;
+            color: rgb(37, 28, 87);
+        }
+
+        .score {
+            margin-left: 5px;
+            flex: 0 0 60px;
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <h1>Leaderboard</h1>
+        <ul>
+        </ul>
+    </section>
+    <script>
+        window.addEventListener('load', () => {
+            //page loaded
+            //then fetch data
+            fetch('http://localhost:3000/api/Scores?filter[limit]=10&filter[order]=score ASC&filter[fields][score]=true&filter[fields][name]=true').then(response => {
+                if (response.status === 200) {
+                    //data fetched fine
+                    //then put the to the dome
+                    const leaderBoardContainer = document.querySelector('ul');
+                    response.json().then(leaderBoard => {
+                        leaderBoard.map((score, key) => {
+                            //create the elements
+                            const rankElement = document.createElement('span');
+                            rankElement.setAttribute('class', 'rank');
+                            rankElement.innerText = key + 1;
+                            const nameElement = document.createElement('span');
+                            nameElement.setAttribute('class', 'name');
+                            nameElement.innerText = score.name;
+                            const scoreElement = document.createElement('span');
+                            scoreElement.setAttribute('class', 'score');
+                            scoreElement.innerText = score.score;
+                            const scoreContainer = document.createElement('li');
+                            //append the elemens
+                            scoreContainer.appendChild(rankElement);
+                            scoreContainer.appendChild(nameElement);
+                            scoreContainer.appendChild(scoreElement);
+                            leaderBoardContainer.appendChild(scoreContainer)
+                        });
+                    })
+                }
+            }).catch(err => {
+                //catch errors
+                console.log('there was an error catching the data ', err);
+            })
+        })
+    </script>
+</body>
+
+</html>
