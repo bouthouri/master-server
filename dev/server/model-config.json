@@ -14,29 +14,29 @@
     ]
   },
   "User": {
-    "dataSource": "db"
+    "dataSource": "dev"
   },
   "AccessToken": {
-    "dataSource": "db",
+    "dataSource": "dev",
     "public": false
   },
   "ACL": {
-    "dataSource": "db",
+    "dataSource": "dev",
     "public": false
   },
   "RoleMapping": {
-    "dataSource": "db",
+    "dataSource": "dev",
     "public": false,
     "options": {
       "strictObjectIDCoercion": true
     }
   },
   "Role": {
-    "dataSource": "db",
+    "dataSource": "dev",
     "public": false
   },
   "Score": {
-    "dataSource": "db",
+    "dataSource": "dev",
     "public": true
   }
 }

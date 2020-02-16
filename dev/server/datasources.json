@@ -2,5 +2,16 @@
   "db": {
     "name": "db",
     "connector": "memory"
+  },
+  "dev": {
+    "host": "127.0.0.1",
+    "port": 27017,
+    "url": "",
+    "database": "unity-master-server",
+    "password": "oussama",
+    "name": "dev",
+    "user": "oussama",
+    "useNewUrlParser": true,
+    "connector": "mongodb"
   }
 }
