@@ -105,7 +105,7 @@
         window.addEventListener('load', () => {
             //page loaded
             //then fetch data
-            fetch('http://localhost:3000/api/Scores?filter[limit]=10&filter[order]=score ASC&filter[fields][score]=true&filter[fields][name]=true').then(response => {
+            fetch(`${window.location.origin}/api/Scores?filter[limit]=10&filter[order]=score ASC&filter[fields][score]=true&filter[fields][name]=true`).then(response => {
                 if (response.status === 200) {
                     //data fetched fine
                     //then put the to the dome
