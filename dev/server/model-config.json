@@ -13,28 +13,6 @@
       "./mixins"
     ]
   },
-  "User": {
-    "dataSource": "dev"
-  },
-  "AccessToken": {
-    "dataSource": "dev",
-    "public": false
-  },
-  "ACL": {
-    "dataSource": "dev",
-    "public": false
-  },
-  "RoleMapping": {
-    "dataSource": "dev",
-    "public": false,
-    "options": {
-      "strictObjectIDCoercion": true
-    }
-  },
-  "Role": {
-    "dataSource": "dev",
-    "public": false
-  },
   "Score": {
     "dataSource": "dev",
     "public": true
