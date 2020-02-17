@@ -1,14 +1,21 @@
-version : '3'
+version: "2.1"
 services:
-    database:
-        image: 'mongo'
-        container_name: 'master-server-mongo-container'
-        environment:
-            - MONGO_INITDB_DATABASE=unity-master-server
-            - MONGO_INITDB_ROOT_USERNAME=oussama
-            - MONGO_INITDB_ROOT_PASSWORD=oussama
-        volumes:
-            - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
-            - ./mongo-volume:/data/db
-        ports:
-            - '27017-27019:27017-27019'
+  api:
+    build: .
+    command: pm2-runtime start server/server.js
+    ports:
+      - "3000:3000"
+    depends_on:
+      - database
+  database:
+    image: "mongo"
+    container_name: "mongo-container"
+    environment:
+      - MONGO_INITDB_DATABASE=unity-master-server
+      - MONGO_INITDB_ROOT_USERNAME=oussama
+      - MONGO_INITDB_ROOT_PASSWORD=oussama
+    volumes:
+      - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+      - ./mongo-volume:/data/db
+    ports:
+      - "27017-27019:27017-27019"
