@@ -13,5 +13,21 @@
     "user": "oussama",
     "useNewUrlParser": true,
     "connector": "mongodb"
+  },
+  "Email": {
+    "name": "Email",
+    "connector": "mail",
+    "transports": [
+      {
+        "type": "smtp",
+        "host": "smtp.gmail.com",
+        "secure": true,
+        "port": 465,
+        "auth": {
+          "user": "bouthouri.com@gmail.com",
+          "pass": "123Salam123"
+        }
+      }
+    ]
   }
 }

@@ -21,8 +21,20 @@
     "dataSource": "dev",
     "public": false
   },
+  "User": {
+    "dataSource": "dev",
+    "public": false
+  },
   "Score": {
     "dataSource": "dev",
+    "public": true
+  },
+  "Profil": {
+    "dataSource": "dev",
+    "public": true
+  },
+  "Mail": {
+    "dataSource": "Email",
     "public": true
   }
 }
