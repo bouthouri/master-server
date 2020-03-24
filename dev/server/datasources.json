@@ -4,7 +4,7 @@
     "connector": "memory"
   },
   "dev": {
-    "host": "host.docker.internal",
+    "host": "mongo-container",
     "port": 27017,
     "url": "",
     "database": "unity-master-server",

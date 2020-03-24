@@ -2,7 +2,12 @@ version: "2.1"
 services:
   api:
     build: .
-    command: pm2-runtime start server/server.js
+    container_name: "node-container"
+    working_dir: /usr/app
+    command:
+      [sh, -c, "npm install && pm2-runtime start /usr/app/ecosystem.config.js"]
+    volumes:
+      - ./dev:/usr/app
     ports:
       - "3000:3000"
     depends_on:
