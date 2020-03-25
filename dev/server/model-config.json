@@ -25,10 +25,6 @@
     "dataSource": "dev",
     "public": false
   },
-  "Score": {
-    "dataSource": "dev",
-    "public": true
-  },
   "Profil": {
     "dataSource": "dev",
     "public": true
