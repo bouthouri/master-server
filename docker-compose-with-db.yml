@@ -23,3 +23,17 @@ services:
       - ./dev:/usr/app
     ports:
       - "3000:3000"
+    depends_on:
+      - database
+  database:
+    image: "mongo"
+    container_name: "mongo-container"
+    environment:
+      - MONGO_INITDB_DATABASE=${DATABASE_NAME}
+      - MONGO_INITDB_ROOT_USERNAME=${DATABASE_USER}
+      - MONGO_INITDB_ROOT_PASSWORD=${DATABASE_PASS}
+    volumes:
+      - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+      - ./mongo-volume:/data/db
+    ports:
+      - "27017-27019:27017-27019"
