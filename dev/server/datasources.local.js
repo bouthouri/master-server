@@ -13,21 +13,5 @@ module.exports = {
     user: process.env.DATABASE_USER,
     useNewUrlParser: true,
     connector: "mongodb"
-  },
-  Email: {
-    name: "Email",
-    connector: "mail",
-    transports: [
-      {
-        type: process.env.EMAIL_TYPE,
-        host: process.env.EMAIL_HOST,
-        secure: true,
-        port: process.env.EMAIL_PORT,
-        auth: {
-          user: process.env.EMAIL_USER,
-          pass: process.env.EMAIL_PASSWORD
-        }
-      }
-    ]
   }
 };
