@@ -13,12 +13,6 @@ services:
       - DATABASE_NAME
       - DATABASE_USER
       - DATABASE_PASS
-      - EMAIL_TYPE
-      - EMAIL_HOST
-      - EMAIL_PORT
-      - EMAIL_USER
-      - EMAIL_PASS
-      - GUEST_MODE
     volumes:
       - ./dev:/usr/app
     ports:
