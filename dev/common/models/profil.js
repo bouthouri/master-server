@@ -7,7 +7,7 @@ module.exports = function(Profil) {
     Profil.app.models.Mail.send(
       {
         to: info.user.email,
-        from: "bouthouri.com@gmail.com",
+        from: process.env.EMAIL_USER,
         subject: "Password reset",
         html: `<div>reset token: ${info.accessToken.id}</div>`
       },
