@@ -9,5 +9,71 @@
   "validations": [],
   "relations": {},
   "acls": [],
-  "methods": {}
+  "methods": {
+    "add-score": {
+      "accepts": [
+        {
+          "arg": "score",
+          "type": "number",
+          "required": true,
+          "description": "the score of the user",
+          "http": {
+            "source": "form"
+          }
+        }
+      ],
+      "returns": [
+        {
+          "arg": "result",
+          "type": "array",
+          "root": true,
+          "description": "the list of the best scores"
+        }
+      ],
+      "description": "add new score and return a list of the best one",
+      "http": [
+        {
+          "path": "/add-score",
+          "verb": "post"
+        }
+      ]
+    },
+    "add-score-guest": {
+      "accepts": [
+        {
+          "arg": "name",
+          "type": "string",
+          "required": true,
+          "description": "the name of the guest who score this",
+          "http": {
+            "source": "form"
+          }
+        },
+        {
+          "arg": "score",
+          "type": "number",
+          "required": true,
+          "description": "the score of the guest",
+          "http": {
+            "source": "form"
+          }
+        }
+      ],
+      "returns": [
+        {
+          "arg": "result",
+          "type": "array",
+          "root": true,
+          "description": "the list of the best scores"
+        }
+      ],
+      "description": "add new score and return a list of the best one for guest players",
+      "http": [
+        {
+          "path": "/add-score-guest",
+          "verb": "post"
+        }
+      ]
+    }
+  }
 }
