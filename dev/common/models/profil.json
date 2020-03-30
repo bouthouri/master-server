@@ -14,10 +14,26 @@
       "foreignKey": ""
     }
   },
-  "acls": [],
+  "acls": [
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW"
+    }
+  ],
   "methods": {
     "addScore": {
       "accepts": [
+        {
+          "arg": "profil",
+          "type": "any",
+          "required": false,
+          "description": "the profil of the user",
+          "http": {
+            "source": "req"
+          }
+        },
         {
           "arg": "score",
           "type": "number",

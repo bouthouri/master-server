@@ -19,23 +19,38 @@ module.exports = function(Profil) {
   });
 
   // methode to register users's scores
-  Profil.addScore = function(name, score, cb) {
-    Profil.create({ name: name, score: score }, function(err, res) {
-      if (err) return cb(err);
-      Profil.find(
-        {
-          limit: 10,
-          order: "score desc",
-          fields: {
-            id: false
-          }
-        },
-        function(err, res) {
+  Profil.addScore = function(profil, score, cb) {
+    const Score = Profil.app.models.Score;
+    Score.findOrCreate(
+      { where: { profilId: profil.accessToken.userId } },
+      { score: score, profilId: profil.accessToken.userId },
+      function(err, instance) {
+        if (err) return cb(err);
+        instance.updateAttribute("score", score, function(err, instance) {
           if (err) return cb(err);
-          cb(null, res);
-        }
-      );
-    });
+          // return the result after successfully adding the score
+          Score.find(
+            {
+              limit: 10,
+              order: "score desc",
+              fields: {
+                id: false
+              },
+              include: {
+                relation: "profil",
+                scope: {
+                  fields: { email: false, id: false, username: true }
+                }
+              }
+            },
+            function(err, res) {
+              if (err) return cb(err);
+              cb(null, res);
+            }
+          );
+        });
+      }
+    );
   };
   // methode to register guests scores
   Profil.addScoreGuest = function(name, score, cb) {
