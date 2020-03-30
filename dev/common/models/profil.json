@@ -10,7 +10,7 @@
   "relations": {},
   "acls": [],
   "methods": {
-    "add-score": {
+    "addScore": {
       "accepts": [
         {
           "arg": "score",
@@ -38,7 +38,7 @@
         }
       ]
     },
-    "add-score-guest": {
+    "addScoreGuest": {
       "accepts": [
         {
           "arg": "name",
