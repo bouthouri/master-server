@@ -52,23 +52,4 @@ module.exports = function(Profil) {
       }
     );
   };
-  // methode to register guests scores
-  Profil.addScoreGuest = function(name, score, cb) {
-    Profil.create({ name: name, score: score }, function(err, res) {
-      if (err) return cb(err);
-      Profil.find(
-        {
-          limit: 10,
-          order: "score desc",
-          fields: {
-            id: false
-          }
-        },
-        function(err, res) {
-          if (err) return cb(err);
-          cb(null, res);
-        }
-      );
-    });
-  };
 };
