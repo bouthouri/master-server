@@ -13,11 +13,17 @@
     },
     "name": {
       "type": "string",
-      "required": true
+      "required": false
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "profil": {
+      "type": "belongsTo",
+      "model": "Profil",
+      "foreignKey": ""
+    }
+  },
   "acls": [],
   "methods": {}
 }
