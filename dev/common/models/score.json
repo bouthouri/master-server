@@ -13,20 +13,26 @@
     },
     "name": {
       "type": "string",
-      "required": true
+      "required": false
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "profil": {
+      "type": "belongsTo",
+      "model": "Profil",
+      "foreignKey": ""
+    }
+  },
   "acls": [],
   "methods": {
-    "register": {
+    "addScoreGuest": {
       "accepts": [
         {
           "arg": "name",
           "type": "string",
           "required": true,
-          "description": "the name of the user who score this",
+          "description": "the name of the guest who score this",
           "http": {
             "source": "form"
           }
@@ -35,7 +41,7 @@
           "arg": "score",
           "type": "number",
           "required": true,
-          "description": "the score of the user",
+          "description": "the score of the guest",
           "http": {
             "source": "form"
           }
@@ -49,10 +55,10 @@
           "description": "the list of the best scores"
         }
       ],
-      "description": "register the score and return an array of score",
+      "description": "add new score and return a list of the best one for guest players",
       "http": [
         {
-          "path": "/register",
+          "path": "/add-score-guest",
           "verb": "post"
         }
       ]
