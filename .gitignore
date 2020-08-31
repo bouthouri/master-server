@@ -1,2 +1,3 @@
 /mongo-volume
 .env
+.DS_Store
