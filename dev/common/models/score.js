@@ -1,22 +1,21 @@
 "use strict";
 
-module.exports = function(Score) {
+module.exports = function (Score) {
   // methode to register guests scores
-  Score.addScoreGuest = function(name, score, cb) {
-    console.log(process.env.GUEST_MODE);
+  Score.addScoreGuest = function (name, score, cb) {
     if (process.env.GUEST_MODE == true) {
       if (name) {
-        Score.create({ name: name, score: score }, function(err, res) {
+        Score.create({ name: name, score: score }, function (err, res) {
           if (err) return cb(err);
           Score.find(
             {
               limit: 10,
               order: "score desc",
               fields: {
-                id: false
-              }
+                id: false,
+              },
             },
-            function(err, res) {
+            function (err, res) {
               if (err) return cb(err);
               cb(null, res);
             }
