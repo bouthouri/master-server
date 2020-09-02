@@ -1,32 +1,30 @@
 "use strict";
 
-module.exports = function(Profil) {
+module.exports = function (Profil) {
   // a methode for email reset
-  Profil.on("resetPasswordRequest", function(info, cb) {
-    console.log(info);
+  Profil.on("resetPasswordRequest", function (info, cb) {
     Profil.app.models.Mail.send(
       {
         to: info.user.email,
         from: process.env.EMAIL_USER,
         subject: "Password reset",
-        html: `<div>reset token: ${info.accessToken.id}</div>`
+        html: `<div>reset token: ${info.accessToken.id}</div>`,
       },
-      function(err, mail) {
-        console.log("email sent!");
+      function (err) {
         cb(err);
       }
     );
   });
 
   // methode to register users's scores
-  Profil.addScore = function(profil, score, cb) {
+  Profil.addScore = function (profil, score, cb) {
     const Score = Profil.app.models.Score;
     Score.findOrCreate(
       { where: { profilId: profil.accessToken.userId } },
       { score: score, profilId: profil.accessToken.userId },
-      function(err, instance) {
+      function (err, instance) {
         if (err) return cb(err);
-        instance.updateAttribute("score", score, function(err, instance) {
+        instance.updateAttribute("score", score, function (err, instance) {
           if (err) return cb(err);
           // return the result after successfully adding the score
           Score.find(
@@ -34,16 +32,16 @@ module.exports = function(Profil) {
               limit: 10,
               order: "score desc",
               fields: {
-                id: false
+                id: false,
               },
               include: {
                 relation: "profil",
                 scope: {
-                  fields: { email: false, id: false, username: true }
-                }
-              }
+                  fields: { email: false, id: false, username: true },
+                },
+              },
             },
-            function(err, res) {
+            function (err, res) {
               if (err) return cb(err);
               cb(null, res);
             }
